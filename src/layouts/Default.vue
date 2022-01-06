@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout bg">
     <header class="header">
       <strong>
         <g-link to="/">{{ $static.metadata.siteName }}</g-link>
@@ -13,10 +13,9 @@
   </div>
 </template>
 
-<static-query>
-query {
-  metadata {
-    siteName
-  }
+<style>
+.bg {
+  background-image: url('~@/assets/images/background.jpg');
+  background-size: cover;
 }
-</static-query>
+</style>

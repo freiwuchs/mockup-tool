@@ -1,7 +1,37 @@
-html, body {
-    /* TODO: 
-     * Hinweis: Das ist hier ein Beispiel.
-     * Kann komplett gelöscht werden 
-    **/
-    background: #fff;
+$light-gray: #EEEEEE;
+$middle-gray: #8E8E8E;
+$dark-gray: #555555;
+$black: #111;
+$white: #FFF;
+
+$red: #D66161;
+$yellow: #F3D91F;
+$green: #9CC666;
+
+$browser-url: #DBDBDB;
+$browser-top-bar: #EEE;
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.button {
+    color: $white;
+    background: $dark-gray;
+    padding: 1rem 1.2rem;
+    border-radius: 4px;
+    transition: all .3s ease;
+
+    &.hollow {
+        background: transparent;
+        color: $dark-gray;
+        border: 1px solid $dark-gray;
+    }
+
+    &:hover {
+        background: $black;
+        color: $white;
+        border-color: $black;
+    }
 }
