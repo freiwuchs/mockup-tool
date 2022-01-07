@@ -14,6 +14,32 @@ $browser-top-bar: #EEE;
 
 body {
     font-family: 'Roboto', sans-serif;
+    
+    .header {
+        display: flex;
+        width: 100%;
+        height: 87px;
+        justify-content: space-between;
+        align-items: center;
+        
+
+        .header-text {
+            font-weight: 500;
+            padding-left: 25px;
+
+
+            .subtitle {
+                color: $middle-gray;
+                font-size: 14px;
+            }
+        }
+        .nav {
+            padding-right: 25px;
+            font-size: 14px;
+            display: flex;
+            gap: 1rem;
+        }
+    }
 }
 
 .button {
@@ -22,6 +48,7 @@ body {
     padding: 1rem 1.2rem;
     border-radius: 4px;
     transition: all .3s ease;
+    text-decoration: none;
 
     &.hollow {
         background: transparent;
@@ -34,4 +61,83 @@ body {
         color: $white;
         border-color: $black;
     }
+
+}
+
+.window {
+    background-color: white;
+    width: 1388px;
+    height: 845px;
+    // position: absolute;
+    bottom: 0;
+    left: 25px;
+    right: 25px;
+    border-radius: 7px;
+    margin: auto;
+    overflow: hidden;
+
+}
+.window-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #EFEFEF;
+    padding: 5px 12px;
+    align-items: center;
+
+    svg {
+        width: 20px;
+        height: auto;
+    }
+
+    .bullets {
+
+        display: flex;
+        gap: 0.2rem;
+
+        .red-bullet {
+            background-color: $red;
+            border-radius: 100px;
+            width: 12px;
+            height: 12px;
+        }
+
+        .yellow-bullet {
+            background-color: $yellow;
+            border-radius: 100px;
+            width: 12px;
+            height: 12px;
+        }
+        .green-bullet {
+        background-color: $green;
+            border-radius: 100px;
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    .browser-url {
+        display: block;
+        background-color: $browser-url;
+        width: 690px;
+        height: 30px;
+        border-radius: 100px;
+        text-align: center;
+    }
+}
+
+.footer {
+    background-color: white;
+    position: fixed;
+    bottom: 0px;
+    height: 42px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-size: 13px;
+        padding-right: 1rem;
+    }
+
 }
