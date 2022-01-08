@@ -35,7 +35,7 @@ $browser-top-bar: #EEE;
   }
 
   @mixin for-no-mobile-support {
-      @media only screen and (min-width: 0px) and (max-width: 475px) {@content; }
+      @media only screen and (min-width: 1px) and (max-width: 475px) {@content; }
   }
 
 body {
@@ -132,6 +132,10 @@ body {
 
     .enlarge-view {
         display: none;
+
+        @include for-phone-only{
+            display: none;
+        }
     }
 
     @include for-wrong-browser-size {
@@ -193,12 +197,21 @@ body {
         @include for-wrong-browser-size {
             box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
         }
+
+        @include for-no-mobile-support{
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+        }
     
         svg {
             width: 20px;
             height: auto;
             color: #717171;
             padding-left: 0.5rem;
+
+            @include for-no-mobile-support{
+                opacity: 0.3;
+
+            }
         }
     
         .bullets {
@@ -242,6 +255,40 @@ body {
         }
     }
 }
+.wrapper-no-support{
+    margin: 0 20px 0 20px;
+    max-width: 400px;
+    height: 469px;
+    display: flex;
+    justify-content: center;
+
+ .no-support {
+    max-width: 200px;
+    height: 469px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    
+ .primary-p {
+      @include for-no-mobile-support {
+        color: black;
+        font-size: 40px;
+        opacity: 0.6;
+        line-height: 1.3em;
+      }
+    }
+
+    .secundary-p {
+        @include for-no-mobile-support {
+            color: black;
+            font-size: 18px;
+            opacity: 0.4;
+            line-height: 1.3em;
+        }
+    }
+
+ }
+}
 
 .smartphone-view {
     background-color: white;
@@ -254,7 +301,7 @@ body {
 
     @include for-no-mobile-support {
         background-color: $light-gray;
-        
+
     }
 
     .window-header {
@@ -391,6 +438,10 @@ body {
     justify-content: center;
     align-items: center;
     box-shadow: -5px 0px 30px rgba(0,0,0,0.1);
+
+    @include for-no-mobile-support{
+        display: none;
+    }
 
     p {
         font-size: 13px;
