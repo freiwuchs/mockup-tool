@@ -28,7 +28,7 @@
               <div class="yellow-bullet"></div>
               <div class="green-bullet"></div>
             </div>
-            <p class="browser-url">Image Name</p>
+            <p class="browser-url"><span>Image Name</span></p>
 
             <div>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -48,7 +48,7 @@
               </svg>
               <p class="first-text">Enlarge your browser <br>
                 window</p>
-              <p class="second-text"> To display the graphics correctly, your browser <br>
+              <p class="second-text"> To display the graphics correctly, your browser
                 window must have a minimum with of 1200 pixels.</p>
             </div>
           </div>
@@ -56,7 +56,7 @@
         <div class="wrapper-no-support">
           <div class="no-support">
             <p class="primary-p">No mobile support</p>
-            <p class ="secundary-p">To see the mockups, open <br>
+            <p class ="secundary-p">To see the mockups, open
                 this link with your computer</p>
           </div>
         </div>
@@ -83,7 +83,7 @@
   background-size: cover;
   width: 100%;
   height: 90vh;
-  padding-top: 1.5rem;;
+  padding-top: 1.5rem;
   /* position: relative; */
 }
 </style>

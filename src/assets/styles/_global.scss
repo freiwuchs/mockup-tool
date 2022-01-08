@@ -31,11 +31,7 @@ $browser-top-bar: #EEE;
   }
 
   @mixin for-wrong-browser-size {
-      @media only screen and (min-width: 476px) and (max-width: 1249px) {@content; }
-  }
-
-  @mixin for-no-mobile-support {
-      @media only screen and (min-width: 1px) and (max-width: 475px) {@content; }
+      @media only screen and (min-width: 600px) and (max-width: 1249px) {@content; }
   }
 
 body {
@@ -87,11 +83,18 @@ body {
             display: flex;
             gap: 1rem;
 
-            @include for-no-mobile-support {
+            @include for-phone-only {
                 display: none;
             }
         }
     }
+}
+
+.bg {
+    @include for-phone-only {
+        box-sizing: border-box;
+        height: calc(100vh - 121px);
+    } 
 }
 
 .button {
@@ -117,6 +120,7 @@ body {
 }
 .window-wrapper {
     padding: 0 25px 0 25px;
+    position: relative;
 }
 .window {
     background-color: white;
@@ -130,6 +134,10 @@ body {
     overflow: hidden;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
 
+    @include for-phone-only {
+        height: 73vh !important;
+    }
+
     .enlarge-view {
         display: none;
 
@@ -138,14 +146,18 @@ body {
         }
     }
 
+
     @include for-wrong-browser-size {
      background-color: $light-gray;
 
+    
+
      .wrapper-enlarge-view {
-        width: 100vw;
         height: 80vh;
         display: flex;
         align-items: center;
+
+
 
         .enlarge-view {
             width: 50vw;
@@ -163,12 +175,6 @@ body {
                opacity: 0.6;
                font-weight: 300;
                line-height: 1.2em;
-
-               @include for-tablet-landscape-up {
-                   font-size: 40px;
-               }
-
-
            }
 
            .second-text {
@@ -176,10 +182,6 @@ body {
                 font-size: 13px;
                 font-weight: 400;
                 line-height: 1.2em;
-
-                @include for-tablet-landscape-up {
-                    font-size: 18px;
-                }
             }
             
         }  
@@ -198,7 +200,7 @@ body {
             box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
         }
 
-        @include for-no-mobile-support{
+        @include for-phone-only{
             box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
         }
     
@@ -208,7 +210,7 @@ body {
             color: #717171;
             padding-left: 0.5rem;
 
-            @include for-no-mobile-support{
+            @include for-phone-only{
                 opacity: 0.3;
 
             }
@@ -252,25 +254,32 @@ body {
             align-items: center;
             color: $dark-gray;
             margin: 0 1rem 0 1rem;
+            
+            span {
+                @include for-phone-only {
+                    display: none;
+                }            
+            }
         }
     }
 }
 .wrapper-no-support{
     margin: 0 20px 0 20px;
-    max-width: 400px;
-    height: 469px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+
+    @include for-wrong-browser-size {
+        display: none;
+    }
 
  .no-support {
     max-width: 200px;
-    height: 469px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
     
  .primary-p {
-      @include for-no-mobile-support {
+      @include for-phone-only {
         color: black;
         font-size: 40px;
         opacity: 0.6;
@@ -279,7 +288,7 @@ body {
     }
 
     .secundary-p {
-        @include for-no-mobile-support {
+        @include for-phone-only {
             color: black;
             font-size: 18px;
             opacity: 0.4;
@@ -299,7 +308,7 @@ body {
     margin: 0 auto;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
 
-    @include for-no-mobile-support {
+    @include for-phone-only {
         background-color: $light-gray;
 
     }
@@ -439,7 +448,7 @@ body {
     align-items: center;
     box-shadow: -5px 0px 30px rgba(0,0,0,0.1);
 
-    @include for-no-mobile-support{
+    @include for-phone-only{
         display: none;
     }
 
