@@ -162,7 +162,7 @@ body {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     overflow: hidden;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 5px 0 20px rgba(0,0,0,0.15);
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -243,6 +243,11 @@ body {
             inset: 0;
             overflow-y: scroll;
             line-height: 0;
+
+            &.loading {
+                align-items: center;
+                display: flex;
+            }
         }
 
         img {
