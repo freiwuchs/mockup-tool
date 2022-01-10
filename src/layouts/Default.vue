@@ -7,20 +7,28 @@
 
     <header class="header">
       <div class="header-text">
-      <p class="title">Fedeli Redesign 2022</p>
-      <p class="subtitle"> Version 2.1</p>
+        <p class="title">Fedeli Redesign 2022</p>
+        <p class="subtitle"> Version 2.1</p>
       </div>
 
-      <nav class="nav">
-        <a href="#" class="smartphone button hollow">Smartphone</a>
-        <a href="#" class="tablet button hollow">Tablet</a>
-        <a href="#" class="desktop button">Desktop</a>
+      <nav class="nav" v-if="deviceTypes.length > 1">
+        <span
+          v-for="(deviceType, index) in deviceTypes"
+          :key="`deviceType_${index}`"
+          :class="[
+            `${deviceType} button`,
+            activeDeviceType == deviceType ? '' : 'hollow',
+          ]"
+          @click="activeDeviceType = deviceType"
+        >
+          {{ deviceType }}
+        </span>
       </nav>
     </header>
 
     <div class="bg">
       <div class="window-wrapper">
-        <div class="window tablet-view">
+        <div :class="`window ${activeDeviceTypeClass}`">
           <div class="window-header"> 
 
             <div class="bullets">
@@ -31,37 +39,42 @@
 
             <p class="browser-url"><span>Image Name</span></p>
 
-            <div>
-            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd"></path>
-            </svg>
+            <div class="navigate-icons">
+              <svg class="navigate-icon disabled" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd"></path>
+              </svg>
 
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-            </svg>
+              <svg class="navigate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+              </svg>
             </div>
           </div>
 
           <div class="wrapper-enlarge-view">
             <div class="enlarge-view">
               <div class="wrapper-svg">
-              <svg width="128" height="129" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" opacity=".6"><g fill="#262626" fill-rule="nonzero"><path d="m86.901.026-2.7.9 9.1 9.3-30.1 1 .9 2.8 30.1-1-9.1 9.4.9 2.8 13.6-14-12.7-11.2zm-35.8 11.1-30.1 1 9.1-9.4-.9-2.7-13.6 14 12.8 11.1 2.7-.9-9.1-9.2 30.1-1-1-2.9zM84.401 128.026c-6.1 0-11.1-.1-11.6-.1h-1.1l-.2-1.1s-.5-1.4-4.2-6.4c-2.2-2.9-4.5-5.6-10.5-11.1-3.3-3-8.1-7.4-11.6-10.5-1.8-1.6-3.3-2.9-3.9-3.5-2.2-2.1-8.2-7.5-4.4-12.4 3.7-4.3 16.5 2.1 23 5.8-1.3-10.3-5.7-45.9-6.4-50.9-1-7.6 2.6-9.7 4.9-10.2 3.7-.9 6.2 2.3 7 4.1l.1.4 5.1 31.6c.3-.6.6-1.1 1-1.6 1.2-1.7 3-2.6 5.1-2.9 4-.5 6.6 2.6 8.1 5.2.4-.7 1-1.3 1.7-1.8 1.3-.8 2.8-1.1 4.5-.7 3.1.8 4.9 3.3 5.9 5.5 1.1-1.4 2.8-2.6 5.5-3 1.6-.2 3 .2 4.2 1.1 2.5 2 2.9 5.8 3 6.2l2.8 21.7c.8 6.1-2 13.5-4.4 20-1.9 5-3.6 9.7-3.3 12.5l.2 1.4-1.4.2c-4.6.4-12.5.5-19.1.5zm-10.6-2.9c3.9.1 20 .3 28-.4.1-3.3 1.7-7.6 3.5-12.4 2.3-6.2 4.9-13.3 4.3-18.7l-2.8-21.7c-.1-.9-.6-3.3-1.9-4.3-.6-.5-1.3-.6-2.1-.5-4.2.5-4.5 3.9-4.6 4.3l-2.8.2c0-.1-1.1-6.1-5.1-7.1-.9-.2-1.6-.1-2.2.3-1.2.8-1.7 2.7-1.8 3.4l-2.7.3c0-.1-2.3-7-6.6-6.5-1.4.2-2.4.8-3.2 1.8-2.5 3.3-1.6 9.7-1.4 11l.1.4-2.8.5-.1-.4-6.8-42.4c-.4-.9-1.8-3.1-3.8-2.7-2.3.5-3.2 2.9-2.7 7.1.7 5.9 6.7 53.7 6.7 53.7l.4 2.9-2.5-1.5c-9.1-5.5-20-9.9-21.8-7.8-1 1.3-1.5 3.5 4.1 8.6.7.6 2.1 1.9 3.9 3.5 3.5 3.1 8.4 7.5 11.6 10.5 6.1 5.7 8.5 8.5 10.8 11.5 2.5 3.4 3.7 5.3 4.3 6.4z"/></g></g>
-              </svg>
+                <svg width="128" height="129" xmlns="http://www.w3.org/2000/svg">
+                  <g fill="none" fill-rule="evenodd" opacity=".6"><g fill="#262626" fill-rule="nonzero"><path d="m86.901.026-2.7.9 9.1 9.3-30.1 1 .9 2.8 30.1-1-9.1 9.4.9 2.8 13.6-14-12.7-11.2zm-35.8 11.1-30.1 1 9.1-9.4-.9-2.7-13.6 14 12.8 11.1 2.7-.9-9.1-9.2 30.1-1-1-2.9zM84.401 128.026c-6.1 0-11.1-.1-11.6-.1h-1.1l-.2-1.1s-.5-1.4-4.2-6.4c-2.2-2.9-4.5-5.6-10.5-11.1-3.3-3-8.1-7.4-11.6-10.5-1.8-1.6-3.3-2.9-3.9-3.5-2.2-2.1-8.2-7.5-4.4-12.4 3.7-4.3 16.5 2.1 23 5.8-1.3-10.3-5.7-45.9-6.4-50.9-1-7.6 2.6-9.7 4.9-10.2 3.7-.9 6.2 2.3 7 4.1l.1.4 5.1 31.6c.3-.6.6-1.1 1-1.6 1.2-1.7 3-2.6 5.1-2.9 4-.5 6.6 2.6 8.1 5.2.4-.7 1-1.3 1.7-1.8 1.3-.8 2.8-1.1 4.5-.7 3.1.8 4.9 3.3 5.9 5.5 1.1-1.4 2.8-2.6 5.5-3 1.6-.2 3 .2 4.2 1.1 2.5 2 2.9 5.8 3 6.2l2.8 21.7c.8 6.1-2 13.5-4.4 20-1.9 5-3.6 9.7-3.3 12.5l.2 1.4-1.4.2c-4.6.4-12.5.5-19.1.5zm-10.6-2.9c3.9.1 20 .3 28-.4.1-3.3 1.7-7.6 3.5-12.4 2.3-6.2 4.9-13.3 4.3-18.7l-2.8-21.7c-.1-.9-.6-3.3-1.9-4.3-.6-.5-1.3-.6-2.1-.5-4.2.5-4.5 3.9-4.6 4.3l-2.8.2c0-.1-1.1-6.1-5.1-7.1-.9-.2-1.6-.1-2.2.3-1.2.8-1.7 2.7-1.8 3.4l-2.7.3c0-.1-2.3-7-6.6-6.5-1.4.2-2.4.8-3.2 1.8-2.5 3.3-1.6 9.7-1.4 11l.1.4-2.8.5-.1-.4-6.8-42.4c-.4-.9-1.8-3.1-3.8-2.7-2.3.5-3.2 2.9-2.7 7.1.7 5.9 6.7 53.7 6.7 53.7l.4 2.9-2.5-1.5c-9.1-5.5-20-9.9-21.8-7.8-1 1.3-1.5 3.5 4.1 8.6.7.6 2.1 1.9 3.9 3.5 3.5 3.1 8.4 7.5 11.6 10.5 6.1 5.7 8.5 8.5 10.8 11.5 2.5 3.4 3.7 5.3 4.3 6.4z"/></g></g>
+                </svg>
               </div>
 
-              <p class="first-text">Enlarge your browser <br>
-                window</p>
-              <p class="second-text"> To display the graphics correctly, your browser
-                window must have a minimum with of 1200 pixels.</p>
+              <p class="first-text">Enlarge your browser window</p>
+              <p class="second-text"> To display the graphics correctly, your browser window must have a minimum with of 1250 pixels.</p>
             </div>
           </div>
 
-        <div class="wrapper-no-support">
-          <div class="no-support">
-            <p class="primary-p">No mobile support</p>
-            <p class ="secundary-p">To see the mockups, open
-                this link with your computer</p>
+          <div class="wrapper-no-support">
+            <div class="no-support">
+              <p class="primary-p">No mobile support</p>
+              <p class ="secundary-p">To see the mockups, open this link with your computer</p>
+            </div>
           </div>
-        </div>
+
+          <div class="wrapper-content">
+            <div class="content">
+              <img src="http://placehold.it/1200x4000" alt="">
+            </div>
+          </div>
 
         </div>
       </div>
@@ -71,7 +84,8 @@
       <p>You can navigate with</p>
 
       <div class="footer-nav">
-        <svg width="82" height="25" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.5)" fill="none" fill-rule="evenodd" opacity=".5"><rect fill="#D8D8D8" width="25" height="25" rx="3"/><path fill="#555" d="m9.257 12.963 4.772 3.085v-6.17z"/><rect fill="#D8D8D8" x="56" width="25" height="25" rx="3"/><rect fill="#D8D8D8" opacity=".3" x="28" width="25" height="11" rx="3"/><rect fill="#D8D8D8" opacity=".3" transform="matrix(1 0 0 -1 0 39)" x="28" y="14" width="25" height="11" rx="3"/><path fill="#555" d="m70.817 12.963-4.772 3.085v-6.17z"/><path fill="#555" opacity=".3" d="m40.037 2.479 3.085 4.772h-6.17zM40.037 22.521l3.085-4.772h-6.17z"/></g>
+        <svg width="82" height="25" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(.5)" fill="none" fill-rule="evenodd" opacity=".5"><rect fill="#D8D8D8" width="25" height="25" rx="3"/><path fill="#555" d="m9.257 12.963 4.772 3.085v-6.17z"/><rect fill="#D8D8D8" x="56" width="25" height="25" rx="3"/><rect fill="#D8D8D8" opacity=".3" x="28" width="25" height="11" rx="3"/><rect fill="#D8D8D8" opacity=".3" transform="matrix(1 0 0 -1 0 39)" x="28" y="14" width="25" height="11" rx="3"/><path fill="#555" d="m70.817 12.963-4.772 3.085v-6.17z"/><path fill="#555" opacity=".3" d="m40.037 2.479 3.085 4.772h-6.17zM40.037 22.521l3.085-4.772h-6.17z"/></g>
         </svg>
       </div>
 
@@ -80,6 +94,30 @@
   </div>
 </template>
 
+<script>
+export default {
+  metaInfo: {
+    title: 'Mockup Preview'
+  },
+  data() {
+    return {
+      activeDeviceType: 'Desktop',
+      deviceTypes: [
+        'Desktop',
+        'Tablet',
+        'Smartphone',
+      ],
+    };
+  },
+  computed: {
+    activeDeviceTypeClass() {
+      return `${this.activeDeviceType.toLowerCase()}-view`;
+    }
+  }
+}
+</script>
+
+
 <style>
 .bg {
   background-image: url('~@/assets/images/background.jpg');
@@ -87,6 +125,5 @@
   width: 100%;
   min-height: calc(100vh - 121px - 1.5rem);
   padding-top: 1.5rem;
-  /* position: relative; */
 }
 </style>

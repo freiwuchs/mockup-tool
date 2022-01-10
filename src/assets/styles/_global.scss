@@ -29,7 +29,6 @@ $browser-top-bar: #EEE;
   @mixin for-big-desktop-up {
     @media only screen and (min-width: 1800px) { @content; }
   }
-
   @mixin for-wrong-browser-size {
       @media only screen and (min-width: 600px) and (max-width: 1249px) {@content; }
   }
@@ -92,10 +91,29 @@ body {
 }
 
 .bg {
+    display: flex;
+    justify-content: center;
+
     @include for-phone-only {
         box-sizing: border-box;
         height: calc(100vh - 121px);
     } 
+}
+
+.navigate-icon {
+    padding: .4rem;
+
+    &:not(.disabled) {
+        cursor: pointer;
+
+        &:hover {
+            fill: $black;
+        }
+    }
+
+    &.disabled {
+        opacity: .4;
+    }
 }
 
 .button {
@@ -103,13 +121,21 @@ body {
     background: $dark-gray;
     padding: 0.8rem 1rem;
     border-radius: 4px;
+    font-size: .85rem;
     transition: all .3s ease;
     text-decoration: none;
+    cursor: pointer;
+    border: 1px solid $dark-gray;
 
     &.hollow {
         background: transparent;
         color: $dark-gray;
-        border: 1px solid $dark-gray;
+
+        &:hover {
+            background: transparent;
+            color: $black;
+            box-shadow: inset 1px 0 0 $black, inset -1px 0 0 $black, inset 0 1px 0 $black, inset 0 -1px 0 $black;
+        }
     }
 
     &:hover {
@@ -120,28 +146,27 @@ body {
 }
 
 .window-wrapper {
-    padding: 0 25px 2rem 25px;
+    padding: 0 25px 42px 25px;
     position: relative;
     display: flex;
-    align-content: stretch;
+    justify-content: center;
     flex-grow: 1;
 }
 
 .window {
     background-color: white;
-    max-width: 1388px;
-    height: 87vh;
+    max-width: 1200px;
     bottom: 0;
     left: 25px;
     right: 25px;
-    border-radius: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     overflow: hidden;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     flex-grow:1 ;
-
 
     @include for-phone-only {
         background-color: $light-gray !important;
@@ -159,51 +184,71 @@ body {
         }
     }
 
+    &:not(.smartphone-view) {
+        @include for-wrong-browser-size {
+            background-color: $light-gray !important;
 
-    @include for-wrong-browser-size {
-     background-color: $light-gray !important;
-
-    
-
-     .wrapper-enlarge-view {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-grow: 1;       
-        
-        
-        .enlarge-view {
-            
-            display: grid;
-            gap: 1rem;
-            margin: 0 25px 0 25px;
-            
-            
-            .wrapper-svg {
-                display: flex;
-                justify-content: center;    
+            .wrapper-content {
+                display: none;
             }
 
-           .first-text {
-            
-               font-size: 40px;
-               opacity: 0.6;
-               font-weight: 300;
-               line-height: 1.4em;
-               text-align: center;
-           }
-
-           .second-text {
-                opacity: 0.4;
-                font-size: 18px;
-                font-weight: 400;
-                line-height: 1.44em;
-                text-align: center;
-                max-width: 500px;
+            .wrapper-enlarge-view {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-grow: 1;       
                 
-            }           
-        }  
-     }
+                .enlarge-view {
+                    display: grid;
+                    gap: 1rem;
+                    margin: 0 25px 0 25px;
+                    
+                    .wrapper-svg {
+                        display: flex;
+                        justify-content: center;    
+                    }
+
+                    .first-text {
+                        font-size: 40px;
+                        opacity: 0.6;
+                        font-weight: 300;
+                        line-height: 1.4em;
+                        text-align: center;
+                    }
+
+                    .second-text {
+                        opacity: 0.4;
+                        font-size: 18px;
+                        font-weight: 400;
+                        line-height: 1.44em;
+                        text-align: center;
+                        max-width: 500px;
+                    }           
+                }  
+            }
+        }
+    }
+
+    .wrapper-content {
+        overflow-y: scroll;
+        flex-grow: 1;
+        position: relative;
+        
+        @include for-phone-only {
+            display: none;
+        }
+
+        .content {
+            position: absolute;
+            inset: 0;
+            overflow-y: scroll;
+            line-height: 0;
+        }
+
+        img {
+            width: 100%;
+            max-width: 100%;
+        }
     }
 
     .window-header {
@@ -220,16 +265,18 @@ body {
         @include for-phone-only{
             box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
         }
-    
+        
+        .navigate-icons {
+            display: flex;
+        }
+
         svg {
             width: 20px;
             height: auto;
             color: #717171;
-            padding-left: 0.4rem;
 
             @include for-phone-only{
                 opacity: 0.3;
-
             }
         }
     
@@ -250,8 +297,9 @@ body {
                 width: 12px;
                 height: 12px;
             }
+
             .green-bullet {
-            background-color: $green;
+                background-color: $green;
                 border-radius: 100px;
                 width: 12px;
                 height: 12px;
@@ -270,9 +318,9 @@ body {
             align-items: center;
             color: $dark-gray;
             margin: 0 1rem 0 1rem;
+            font-size: 13px;
             
             span {
-
                 @include for-phone-only {
                     display: none;
                 }            
@@ -297,35 +345,34 @@ body {
         max-width: 250px;
     
         .primary-p {
-
             @include for-phone-only {
-            color: black;
-            font-size: 40px;
-            opacity: 0.6;
-            line-height: 1em;
-            padding-bottom: 1.5rem;
+                color: black;
+                font-size: 40px;
+                font-weight: 300;
+                opacity: 0.6;
+                line-height: 1em;
+                padding-bottom: 1.5rem;
             }
         }
 
         .secundary-p {
             @include for-phone-only {
-            color: black;
-            font-size: 18px;
-            opacity: 0.4;
-            line-height: 1.44em;
-         }
+                color: black;
+                font-size: 18px;
+                opacity: 0.4;
+                line-height: 1.44em;
+            }
         }
-
     }
 }
 
 .smartphone-view {
     background-color: white;
-    max-width: 380px;
-    height: 80vh;
+    max-width: 428px;
+    max-height: 726px;
     border-radius: 7px;
     overflow: hidden;
-    margin: 0 auto;
+    margin: 0 auto 1.5rem;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
 
     @include for-phone-only {
@@ -351,7 +398,6 @@ body {
         }
     
         .bullets {
-    
             display: flex;
             gap: 0.3rem;
     
@@ -368,8 +414,9 @@ body {
                 width: 12px;
                 height: 12px;
             }
+
             .green-bullet {
-            background-color: $green;
+                background-color: $green;
                 border-radius: 100px;
                 width: 12px;
                 height: 12px;
@@ -388,7 +435,6 @@ body {
             align-items: center;
             color: $dark-gray;
             margin: 0 1rem 0 1rem;
-            
         }
     }
 }
@@ -397,10 +443,10 @@ body {
     box-sizing: border-box;
     background-color: white;
     max-width: 900px;
-    height: 740px;
+    max-height: 740px;
     border-radius: 7px;
     overflow: hidden;
-    margin: 0 auto;
+    margin: 0 auto 1.5rem;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
 
     .window-header {
@@ -418,7 +464,6 @@ body {
         }
     
         .bullets {
-    
             display: flex;
             gap: 0.3rem;
     
@@ -437,7 +482,7 @@ body {
             }
 
             .green-bullet {
-            background-color: $green;
+                background-color: $green;
                 border-radius: 100px;
                 width: 12px;
                 height: 12px;
@@ -453,7 +498,6 @@ body {
             justify-content: center;
             align-items: center;
             color: $dark-gray;
-            font-size: 13px;
         }
     }
 }
