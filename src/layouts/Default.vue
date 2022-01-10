@@ -20,7 +20,7 @@
 
     <div class="bg">
       <div class="window-wrapper">
-        <div class="window">
+        <div class="window tablet-view">
           <div class="window-header"> 
 
             <div class="bullets">
@@ -32,8 +32,7 @@
             <p class="browser-url"><span>Image Name</span></p>
 
             <div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd"></path>
             </svg>
 
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -75,7 +74,7 @@
         <svg width="82" height="25" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.5)" fill="none" fill-rule="evenodd" opacity=".5"><rect fill="#D8D8D8" width="25" height="25" rx="3"/><path fill="#555" d="m9.257 12.963 4.772 3.085v-6.17z"/><rect fill="#D8D8D8" x="56" width="25" height="25" rx="3"/><rect fill="#D8D8D8" opacity=".3" x="28" width="25" height="11" rx="3"/><rect fill="#D8D8D8" opacity=".3" transform="matrix(1 0 0 -1 0 39)" x="28" y="14" width="25" height="11" rx="3"/><path fill="#555" d="m70.817 12.963-4.772 3.085v-6.17z"/><path fill="#555" opacity=".3" d="m40.037 2.479 3.085 4.772h-6.17zM40.037 22.521l3.085-4.772h-6.17z"/></g>
         </svg>
       </div>
-      
+
     </footer>
 
   </div>
@@ -86,7 +85,7 @@
   background-image: url('~@/assets/images/background.jpg');
   background-size: cover;
   width: 100%;
-  height: 90vh;
+  min-height: calc(100vh - 121px - 1.5rem);
   padding-top: 1.5rem;
   /* position: relative; */
 }
