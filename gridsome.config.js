@@ -9,6 +9,8 @@ module.exports = {
   templates: {
     ContentfulProject: '/project/:id',
   },
+  siteUrl: 'https://freiwuchs.github.io',
+  pathPrefix: '/mockup-tool',
   plugins: [
     {
       use: '@gridsome/source-contentful',
