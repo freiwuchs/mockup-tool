@@ -6,6 +6,8 @@
     "develop": "gridsome develop",
     "explore": "gridsome explore"
   },
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist",
   "dependencies": {
     "@gridsome/source-contentful": "^0.6.0",
     "dot-env": "^0.0.1",
