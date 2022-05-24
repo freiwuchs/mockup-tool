@@ -32,17 +32,14 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
-          envkey_SOME_API_KEY: ${{ secrets.SPACE }}
-          envkey_SECRET_KEY: ${{ secrets.ACCESSTOKEN }}
+          envkey_SPACE: ${{ secrets.SPACE }}
+          envkey_ACCESSTOKEN: ${{ secrets.ACCESSTOKEN }}
+          directory: src 
           file_name: .env
 
       - run: npm ci
-      - name: Build
-        run: npm run build
-        env:
-          SOME_API_KEY: ${{ secrets.SPACE }}
-          SECRET_KEY: ${{ secrets.ACCESSTOKEN }}
-
+      - run: npm run build
+        
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
