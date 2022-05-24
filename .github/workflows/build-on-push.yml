@@ -5,6 +5,8 @@ on:
     branches:
       - main
   pull_request:
+  repository_dispatch:
+    types: [custom_event_type]
 
 jobs:
   deploy:
