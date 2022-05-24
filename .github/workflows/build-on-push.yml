@@ -21,19 +21,25 @@ jobs:
         with:
           node-version: '14'
 
-      - run: npm i
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - run: npm ci
       - name: Build
         env:
           SPACE: ${{ secrets.SPACE }}
           ACCESSTOKEN: ${{ secrets.ACCESSTOKEN }}
         run: npm run build
-      
-      - name: Deployment
-        run: npm run deploy
         
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./public
+          destination_dir: dist
