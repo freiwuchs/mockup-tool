@@ -30,7 +30,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1
+        uses: SpicyPizza/create-envfile@v1.3.1
         with:
           envkey_SPACE: ${{ secrets.SPACE }}
           envkey_ACCESSTOKEN: ${{ secrets.ACCESSTOKEN }}
