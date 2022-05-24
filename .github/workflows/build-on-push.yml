@@ -29,11 +29,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Console Log
+        run: echo "The API key is: ${{env.ACCESSTOKEN}} and ${{secrets.SPACE}}" 
+
       - run: npm ci
       - name: Build
         env:
-          SPACE: 123456789
-          ACCESSTOKEN: 098765432345678987654345678
+          SPACE: ${{ secrets.SPACE }}
+          ACCESSTOKEN: ${{ secrets.ACCESSTOKEN }}
         run: npm run build
         
       - name: Deploy
