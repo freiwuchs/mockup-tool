@@ -30,7 +30,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Console Log
-        run: echo "The API key is:${{ACCESSTOKEN}} and :${{secrets.SPACE}}"
+        run: echo "The API key is${ACCESSTOKEN} and :${{secrets.ACCESSTOKEN}}"
 
       - run: npm ci
       - name: Build
