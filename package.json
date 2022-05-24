@@ -4,7 +4,7 @@
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore",
+    "explore": "gridsome explore"
   },
   "dependencies": {
     "@gridsome/source-contentful": "^0.6.0",
