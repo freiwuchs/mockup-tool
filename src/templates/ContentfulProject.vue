@@ -233,18 +233,20 @@ export default {
         this.$set(this, 'currentImage', this.images[this.activeDeviceType][0]);
     },
     preloadImage(image) {
-      const imageEl = new Image();
-      let timeout;
-      imageEl.onload = () => {
-        this.$set(this, 'currentImage', image);
-        this.loading = false;
-        clearTimeout(timeout);
-      }
-      imageEl.src = image.file.url;
+      if (process.isClient) {
+        const imageEl = new Image();
+        let timeout;
+        imageEl.onload = () => {
+          this.$set(this, 'currentImage', image);
+          this.loading = false;
+          clearTimeout(timeout);
+        }
+        imageEl.src = image.file.url;
 
-      timeout = setTimeout(() => {
-        this.loading = true;
-      }, 50);
+        timeout = setTimeout(() => {
+          this.loading = true;
+        }, 50);
+      }
     },
     getPrevImage() {
       const imageIndex = this.images[this.activeDeviceType].findIndex(img => img == this.currentImage)
