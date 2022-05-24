@@ -41,7 +41,7 @@ export default {
       return `${this.activeDeviceType.toLowerCase()}-view`;
     },
     currentImage() {
-      return 'http://placehold.it/1200x4000';
+      return 'https://via.placeholder.com/1200x4000';
     },
   },
 }
@@ -52,6 +52,7 @@ export default {
 .bg {
   background-image: url('~@/assets/images/background.jpg');
   background-size: cover;
+  background-position: center;
   width: 100%;
   min-height: calc(100vh - 121px - 1.5rem);
   padding-top: 1.5rem;

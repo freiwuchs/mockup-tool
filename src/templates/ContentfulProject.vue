@@ -195,8 +195,18 @@ export default {
     },
   },
   created() {
-      this.setInitData();
-    },
+    this.setInitData();
+  },
+  mounted() {
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowRight') {
+        this.clickNextImage();
+      }
+      if (e.key === 'ArrowLeft') {
+        this.clickPrevImage();
+      }
+    });
+  },
   methods: {
     setInitData() {
       this.images.Desktop = [ ...this.$page.project.desktopMockups ];

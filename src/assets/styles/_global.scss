@@ -4,9 +4,9 @@ $dark-gray: #555555;
 $black: #111;
 $white: #FFF;
 
-$red: #D66161;
-$yellow: #F3D91F;
-$green: #9CC666;
+$red: #ed3131;
+$yellow: #f9bd15;
+$green: #5fca2c;
 
 $browser-url: #DBDBDB;
 $browser-top-bar: #EEE;
@@ -101,7 +101,7 @@ body {
 }
 
 .navigate-icon {
-    padding: .4rem;
+    padding: .4rem .2rem;
 
     &:not(.disabled) {
         cursor: pointer;
@@ -155,7 +155,7 @@ body {
 
 .window {
     background-color: white;
-    max-width: 1200px;
+    max-width: 1400px;
     bottom: 0;
     left: 25px;
     right: 25px;
@@ -259,7 +259,7 @@ body {
     .window-header {
         display: flex;
         justify-content: space-between;
-        background-color: #EFEFEF;
+        background-color: #e5e5e5;
         padding: 5px 12px;
         align-items: center;
 
@@ -276,7 +276,7 @@ body {
         }
 
         svg {
-            width: 20px;
+            width: 24px;
             height: auto;
             color: #717171;
 
