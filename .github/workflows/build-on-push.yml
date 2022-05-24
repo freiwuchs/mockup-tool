@@ -6,7 +6,7 @@ on:
       - main
   pull_request:
   repository_dispatch:
-    types: [custom_event_type]
+    types: [publish-event]
 
 jobs:
   deploy:
