@@ -29,9 +29,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Console Log
-        run: echo "The API key is${ACCESSTOKEN} and :${{secrets.ACCESSTOKEN}}"
-
       - run: npm ci
       - name: Build
         env:
