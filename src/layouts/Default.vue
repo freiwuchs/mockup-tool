@@ -1,13 +1,9 @@
 <template>
   <div class="layout">
     
-    <div class="site-title">
-      <p> Mockup Preview </p>
-    </div>
-
     <slot />
 
-    <footer class="footer">
+    <footer v-if="false" class="footer">
       <p>You can navigate with</p>
 
       <div class="footer-nav">
@@ -54,7 +50,7 @@ export default {
   background-size: cover;
   background-position: center;
   width: 100%;
-  min-height: calc(100vh - 121px - 1.5rem);
-  padding-top: 1.5rem;
+  min-height: calc(100vh - 66px - 1rem);
+  padding-top: 1rem;
 }
 </style>
